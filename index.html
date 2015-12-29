@@ -8,10 +8,11 @@
     <!-- FONTS -->
     <link href='https://fonts.googleapis.com/css?family=Raleway:200' rel='stylesheet' type='text/css'>
 
-    <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
-    <link href="home.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="css/home.css" rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script src="js/home.js"></script>
 
 </head>
 
@@ -20,29 +21,17 @@
         <center>
             <h1 class="header">Metro Search</h1>
             <form id="form" class="valign">
-                <input type="text" name="inputname" id="inputname" class="search" placeholder="name" required>
-                <i onclick='submit()' class="icon ion-ios-arrow-right"></i>
+                <input type="text" name="inputname" id="inputname" class="search search-loading" placeholder="name" required>
+                <span id="icon">
+                    <i onclick='verify(callback);' class="fa fa-angle-right icon-ready"></i>
+                </span>
             </form>
+            <h1 class="error" id="error"></h1>
         </center>
     </div>
     <script>
-        function verify(cb) {
-            $.ajax({
-                type: "GET",
-                url: "verify.php",
-                data: $("#form").serialize(),
-                success: cb
-            });
-        }
-
-        function callback(input) {
-            if (input.indexOf("=") > 1) {
-                var id = input.split("=");
-                window.location = "results.php?id=" + id[0];
-            }
-        }
         $("#form").keypress(function (e) {
-            if (e.keyCode == 13) {
+            if (e.keyCode === 13) {
                 e.preventDefault();
                 verify(callback);
             }
