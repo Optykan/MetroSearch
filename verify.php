@@ -33,7 +33,7 @@ if(strpos($http_response_header[0],'200') !== false){
     elseif (strpos($http_response_header[0],'200') !==false){
         echo "success";
     }*/
-    echo "ID="$id;
+    echo "ID=".$id;
     
 }
 elseif (strpos($http_response_header[0],'400') !== false){

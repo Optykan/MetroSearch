@@ -7,15 +7,12 @@ function error(input) {
 function verify(cb) {
     document.getElementById("inputname").className = 'search search-loading';
     document.getElementById("error").className = 'error';
-    setTimeout(function () {
-        error("error");
-    }, 1000);
-    /*$.ajax({
+    $.ajax({
         type: "GET",
         url: "verify.php",
         data: $("#form").serialize(),
         success: cb
-    });*/
+    });
 }
 
 function callback(input) {
@@ -23,7 +20,7 @@ function callback(input) {
     document.getElementById("error").className = 'error';
     if (input.indexOf("=") > 1) {
         var id = input.split("=");
-        window.location = "results.php?id=" + id[0];
+        window.location = "results.php?id=" + id[1];
     } else {
         error(input);
     }
