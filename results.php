@@ -5,13 +5,14 @@ $region="NA1";
 $summoners=array();
 $champions=array();
 $spells=array();
+$masteries=array();
 
 $data = json_decode(file_get_contents("https://na.api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/$region/$id?api_key=$key"), true);
 $gameQueue = $data['gameQueueConfigId'];
 $players=10;
 
   if($gameQueue === 2 || $gameQueue === 31 || $gameQueue === 32 || $gameQueue === 7 || $gameQueue === 33 || $gameQueue === 14 || $gameQueue === 16 || $gameQueue === 17 || $gameQueue === 25 || $gameQueue === 4 || $gameQueue === 6 || $gameQueue === 42 || $gameQueue === 61 || $gameQueue === 65 || $gameQueue === 70 || $gameQueue === 76 || $gameQueue === 83 || $gameQueue === 91 || $gameQueue === 92 || $gameQueue === 93 || $gameQueue === 96 || $gameQueue === 300 || $gameQueue === 310){
-                    $players = 10;
+        $players = 10;
     }
     else if($gameQueue === 8 || $gameQueue === 9 || $gameQueue === 41 || $gameQueue === 52){
         $players=6;
@@ -28,6 +29,15 @@ for ($i=0;$i<$players;$i++){
     $champions[$i]=$data['participants'][$i]['championId'];
     $spells[$i][0]=$data['participants'][$i]['spell1Id'];
     $spells[$i][1]=$data['participants'][$i]['spell2Id'];
+    
+    for($k=0;$k<3;$k++){
+        $masteries[$i][$k]=0;
+    }
+    foreach($data['participants'][$i]['masteries'] as $mtmp){
+        $mTree=floor(($mtmp['masteryId']-6000)/100);
+        $masteries[$i][$mTree-1]+=$mtmp['rank'];
+    }
+    
 }
 
 $champname = json_decode(file_get_contents("json/champions.json"), true);
@@ -38,25 +48,34 @@ $spellname = json_decode(file_get_contents("json/spells.json"), true);
     <head>
         <link href='https://fonts.googleapis.com/css?family=Raleway:200' rel='stylesheet' type='text/css'>
         <link href='css/styles.css' rel='stylesheet'>
+
+        <script src='js/time.js'></script>
     </head>
 
     <body>
         <?php 
-            for ($i=0;$i<$players/2;$i++){
-                echo "<p class='team red'>".strtoupper($summoners[$i])." is playing ".strtoupper($champname[$champions[$i]]['key'])." using ".strtoupper($spellname[$spells[$i][0]]['name'])."/".strtoupper($spellname[$spells[$i][0]]['name'])."</p>";
+           
+            for ($i=0;$i<$players;$i++){
+                echo "<p class='team ";
+                if ($i>=$players/2)
+                    echo "blue'>";
+                else
+                    echo "red'>";
+                echo strtoupper($summoners[$i])." is playing ".strtoupper($champname[$champions[$i]]['name'])." using ".strtoupper($spellname[$spells[$i][0]]['name'])."/".strtoupper($spellname[$spells[$i][1]]['name']);
+                echo " - ";
+                echo $masteries[$i][0]."/".$masteries[$i][1]."/".$masteries[$i][2]." (keystone)";
+                
             }
-        ?>
-            <!-- Team 2 -->
-            <?php
-            for ($i=$players/2;$i<$players;$i++){
-                echo "<p class='team blue'>".strtoupper($summoners[$i])." is playing ".strtoupper($champname[$champions[$i]]['key'])." using ".strtoupper($spellname[$spells[$i][0]]['name'])."/".strtoupper($spellname[$spells[$i][0]]['name'])."</p>";
-            }
-        var_dump($summoners);
-        var_dump($champions);
-        var_dump($spells);
-        
         ?>
 
+            <script>
+                var time = <?=$time?>;
+                //time = time + 180;     --still unclear about offset
+                setInterval(function () {
+                    document.getElementById('time').innerHTML = SecondsToHMS(time);
+                    time = time + 1;
+                }, 1000);
+            </script>
     </body>
 
     </html>
