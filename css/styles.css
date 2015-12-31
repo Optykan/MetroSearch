@@ -1,10 +1,11 @@
 body {
     font-family: 'Raleway', sans-serif;
+    background-color: #22313F;
     color: #eee;
 }
 
 .team {
-    font-size: 3em;
+    font-size: 2em;
 }
 
 .red {
