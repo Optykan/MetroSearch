@@ -9,7 +9,7 @@ function verify(cb) {
     document.getElementById("error").className = 'error';
     $.ajax({
         type: "GET",
-        url: "verify.php",
+        url: "index.php",
         data: $("#form").serialize(),
         success: cb
     });

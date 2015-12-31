@@ -1,0 +1,129 @@
+[
+    {
+        "image": "base 0 formatting system but im lazy so here"
+    },
+    {
+        "image": "/assets/spells/SummonerBoost.png",
+        "name": "Cleanse"
+    },
+    {
+        "image": "/assets/spells/SummonerClairvoyance.png",
+        "name": "Clairvoyance"
+    },
+
+    {
+        "image": "/assets/spells/SummonerExhaust.png",
+        "name": "Exhaust"
+    },
+
+    {
+        "image": "/assets/spells/SummonerFlash.png",
+        "name": "Flash"
+    },
+
+    {
+        "image": "many 404s"
+    },
+
+    {
+        "image": "/assets/spells/SummonerHaste.png",
+        "name": "Ghost"
+    },
+
+    {
+        "image": "/assets/spells/SummonerHeal.png",
+        "name": "Heal"
+    },
+
+    {
+        "image": "404"
+    },
+
+    {
+        "image": "404"
+    },
+
+    {
+        "image": "404"
+    },
+
+    {
+        "image": "/assets/spells/SummonerSmite.png",
+        "name": "Smite"
+    },
+
+    {
+        "image": "/assets/spells/SummonerTeleport.png",
+        "name": "Teleport"
+    },
+    {
+        "image": "/assets/spells/SummonerMana.png",
+        "name": "Clarity"
+    },
+
+    {
+        "image": "/assets/spells/SummonerDot.png",
+        "name": "Ignite"
+    },
+    {
+        "image": "404"
+    },
+    {
+        "image": "404"
+    },
+    {
+        "image": "/assets/spells/SummonerOdinGarrison.png",
+        "name": "Garrison"
+    },
+    {
+        "image": "404"
+    },
+    {
+        "image": "404"
+    },
+    {
+        "image": "404"
+    },
+    {
+        "image": "/assets/spells/SummonerBarrier.png",
+        "name": "Barrier"
+    },
+    {
+        "image": "404"
+    },
+    {
+        "image": "404"
+    },
+    {
+        "image": "404"
+    },
+    {
+        "image": "404"
+    },
+    {
+        "image": "404"
+    },
+    {
+        "image": "404"
+    },
+    {
+        "image": "404"
+    },
+    {
+        "image": "404"
+    },
+    {
+        "image": "/assets/spells/SummonerDash.png",
+        "name": "To the King!"
+    },
+    {
+        "image": "/assets/spells/SummonerPoro.png",
+        "name": "Poro Toss"
+    },
+    {
+        "image": "/assets/spells/SummonerSnowball.png",
+        "name": "Mark"
+    }
+
+
+]
