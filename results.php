@@ -7,9 +7,9 @@ $champions=array();
 $spells=array();
 $masteries=array();
 $keystones=array();
+$remap=array(0,1,3,2);
 
 $data = json_decode(file_get_contents("https://na.api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/$region/$id?api_key=$key"), true);
-echo "https://na.api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/$region/$id?api_key=$key";
 $gameQueue = $data['gameQueueConfigId'];
 $players=10;
 
@@ -38,7 +38,7 @@ for ($i=0;$i<$players;$i++){
     }
     foreach($data['participants'][$i]['masteries'] as $mtmp){
         $mTree=floor(($mtmp['masteryId']-6000)/100);
-        $masteries[$i][$mTree-1]+=$mtmp['rank'];
+        $masteries[$i][$remap[$mTree]-1]+=$mtmp['rank'];
         $keyCheck=floor($mtmp['masteryId']-(6000+$mTree*100));
         if($keyCheck>60){
             $keystones[$i]=$mtmp['masteryId'];
@@ -62,21 +62,21 @@ $keystonename = json_decode(file_get_contents("json/masteries.json"), true);
 
     <body>
         <?php 
-            
-            for ($i=0;$i<$players;$i++){
+        $pId=0;
+            foreach($data['participants'] as $participant){
+                
                 echo "<p class='team ";
-                if ($i>=$players/2)
+                if ($participant['teamId']==100)
                     echo "red'>";
                 else
                     echo "blue'>";
-                echo strtoupper($summoners[$i])." is playing ".strtoupper($champname[$champions[$i]]['name'])." using ".strtoupper($spellname[$spells[$i][0]]['name'])."/".strtoupper($spellname[$spells[$i][1]]['name']);
+                echo strtoupper($participant['summonerName'])." is playing ".strtoupper($champname[$participant['championId']]['name'])." using ".strtoupper($spellname[$participant['spell1Id']]['name'])."/".strtoupper($spellname[$participant['spell2Id']]['name']);
                 echo " - ";
-                echo $masteries[$i][0]."/".$masteries[$i][1]."/".$masteries[$i][2]."(".$keystonename["$keystones[$i]"].")";
-                
+                echo $masteries[$pId][0]."/".$masteries[$pId][1]."/".$masteries[$pId][2]." (".$keystonename["$keystones[$pId]"].")";
+            $pId++;
             }
-        var_dump($keystones);
-        echo "\n";
-        var_dump($keystonename);
+           
+        
         ?>
 
             <script>
