@@ -2,60 +2,65 @@
     margin: 0;
     padding: 0;
 }
-
 body {
     background-color: #1d1d1d;
     color: white;
 }
-
 .red .pseudotile .tile {
     background-color: #ee1111;
 }
-
 .blue .pseudotile .tile {
     background-color: #2d89ef;
 }
-
-.middle {
-    width: 100%;
-    text-align: center;
-}
-
-.tile-align {
-    width: 1280px !important;
-    margin: 0 auto !important;
-}
-
-.info h1 {
-    display: inline-block;
-    font-size: 5em;
-    font-family: 'Raleway', serif;
-    font-weight: 200;
-    color: white;
-}
-
-.summoner {
-    color: white;
-}
-
-.isplaying {
-    width: 310px;
-    text-align: center;
-}
-
 .tile-container {
-    width: 1650px;
+    width: 1790px;
     margin: 0 auto;
 }
+.image-overlay, .tile-content {
+    font-family: 'Raleway', serif;
+}
 
+/* summoner splash */
+
+.tile-wide-y {
+    width: 171px;
+}
+
+/* summoner spells */
+
+.tile-small, .spell {
+    width: 70px;
+    height: 70px;
+}
+
+/*runes, masteries, and rank*/
+
+.tile-small-y {
+    //width:150px;
+}
 .pseudotile {
     display: block;
     float: left;
-    width: 330px;
+    width: 354px;
     padding-left: 5px;
     padding-right: 5px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+.image-container .image-overlay::after, .image-container .image-overlay::before {
+    border: none;
+}
+.spell .image-overlay {
+    height: 100%;
+    padding: 0;
+    margin: 0 auto;
+    vertical-align: middle;
+}
+
+/* ranked */
+
+.image-container .ranked {
+    background-color: rgba(0, 0, 0, 0);
 }
