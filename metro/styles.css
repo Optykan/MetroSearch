@@ -6,7 +6,7 @@ body {
     background-color: #1d1d1d;
     color: white;
 }
-.red .pseudotile .tile {
+.red .pseudotile .tile:not(.ranked) {
     background-color: #ee1111;
 }
 .blue .pseudotile .tile {
@@ -17,7 +17,12 @@ body {
     margin: 0 auto;
 }
 .image-overlay, .tile-content {
-    font-family: 'Raleway', serif;
+    font-family: 'Open Sans', serif;
+}
+.middle {
+    width: 1.2em;
+    margin: 0 auto;
+    padding: 10px 0 10px 0;
 }
 
 /* summoner splash */
@@ -61,6 +66,28 @@ body {
 
 /* ranked */
 
-.image-container .ranked {
+.ranked .image-container .frame {
     background-color: rgba(0, 0, 0, 0);
 }
+.bronze {
+    background-image: url("http://www.kafkaesqueblog.com/wp-content/uploads/2013/06/brown-gold-bronze-abstract.jpg");
+}
+.silver {
+    background-image: url("http://wallpapersrang.com/wp-content/uploads/2015/12/abstract-silver-liquid-wave-free-desktop-background-free.jpg");
+    background-size: 240px 150px;
+}
+.gold {
+    background-image: url("http://www.book.kalemasawaa.com/Sources/Kirsty_Pargeter_Abstract_Backgrounds/Abstract%20Gold%201602.jpg");
+    background-size: 150px 188px;
+}
+.platinum {
+    background-image: url("http://i.imgur.com/svF28SX.jpg");
+    background-size: 267px 150px;
+}
+.diamond {
+    background-image: url("http://freedesignfile.com/upload/2013/01/Abstract_Background-9.jpg");
+    background-size: 150px 150px;
+}
+.master {}
+.challenger {}
+.ranked {}
