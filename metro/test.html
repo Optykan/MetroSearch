@@ -2,14 +2,16 @@
 <html>
 
 <head>
-    <link href="https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro.min.css" rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/metro/3.0.13/css/metro.min.css" rel='stylesheet'>
     <link href="https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/css/metro-icons.min.css" rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/metro/3.0.13/css/metro-responsive.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
     <link href='styles.css' rel='stylesheet'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
     <!-- Remove the next JS to prevent angled clicking -->
-    <!--<script src="https://cdn.rawgit.com/olton/Metro-UI-CSS/master/build/js/metro.min.js" rel='stylesheet'></script>-->
+    <script src="../js/metro.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 </head>
 
 
@@ -17,10 +19,9 @@
     <div class="row tile-container red">
         <div class='pseudotile'>
             <div class="tile tile-wide-y">
-
                 <div class="image-container">
                     <div class="frame">
-                        <img src="../assets/splash/Ahri.png">
+                        <img src="../assets/splash/skins/Ahri_1.jpg">
                         <img src="../assets/ranked/PLATINUM/border.png" style="position:absolute; top:0px;">
                     </div>
                     <div class="image-overlay">
@@ -29,6 +30,85 @@
                 </div>
             </div>
 
+            <div class="tile tile-small" data-role="tile">
+                <div class="image-container spell">
+                    <div class="frame">
+                        <img src="../assets/spells/SummonerFlash.png">
+                    </div>
+                    <div class="image-overlay">
+                        Flash</br>
+                        300s
+                    </div>
+                </div>
+            </div>
+            <div class="tile tile-small" data-role="tile">
+                <div class="image-container spell">
+                    <div class="frame">
+                        <img src="../assets/spells/SummonerDot.png">
+                    </div>
+                    <div class="image-overlay">
+                        Ignite
+                    </div>
+                </div>
+            </div>
+
+            <div class="tile ranked platinum" data-role="tile">
+                <div class="image-container">
+                    <div class="frame">
+                        <img src="../assets/ranked/PLATINUM/I.png">
+                    </div>
+                    <div class="image-overlay">
+                        Bronze 5 </br>
+                        25 LP </br>
+                        o o x - -
+                    </div>
+                </div>
+                <span class="tile-badge bg-blue">25</span>
+            </div>
+            <div class="tile tile-small" data-role="tile">
+                <div class="tile-content ">
+                    <div class="image-container spell">
+                        <div class="frame">
+                            <img src="../assets/keystone/6362.png">
+                        </div>
+                        <div class="image-overlay">
+                            18/12/0
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tile tile-small" data-role="tile">
+                <div class="tile-content ">RUNES</div>
+            </div>
+        </div>
+
+        <div class='pseudotile'>
+            <div class="tile tile-wide-y" data-role="tile" data-effect="slideRight">
+                <div class="tile-content">
+                    <div class="image-container">
+                        <div class="frame">
+                            <div class="live-slide">
+                                <div class="image-container">
+                                    <div class="frame">
+                                        <img src="../assets/splash/skins/Ahri_2.jpg">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="live-slide" style="display:none;">
+                                <div class="image-container">
+                                    <div class="frame">
+                                        <img src="../assets/splash/skins/Ahri_3.jpg">
+                                    </div>
+                                </div>
+                            </div>
+                            <img src="../assets/ranked/PLATINUM/border.png" style="position:absolute; top:0px;W">
+                        </div>
+                        <div class="image-overlay">
+                            Overlay text
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="tile tile-small" data-role="tile">
                 <div class="image-container spell">
                     <div class="frame">
@@ -94,30 +174,6 @@
             <div class="tile tile-small-y" data-role="tile">
                 <div class="tile-content ">GOLD</div>
             </div>
-            <div class="tile tile-small" data-role="tile">
-                <div class="tile-content ">MASTERIES</div>
-            </div>
-            <div class="tile tile-small" data-role="tile">
-                <div class="tile-content ">RUNES</div>
-            </div>
-            <div class="tile tile-small-y" data-role="tile">
-                <div class="tile-content ">RUNES</div>
-            </div>
-        </div>
-
-        <div class='pseudotile'>
-            <div class="tile tile-wide-y">
-            </div>
-
-            <div class="tile tile-small" data-role="tile">
-                <div class="tile-content ">FLASH</div>
-            </div>
-            <div class="tile tile-small" data-role="tile">
-                <div class="tile-content ">IGNITE</div>
-            </div>
-            <div class="tile tile-small-y" data-role="tile">
-                <div class="tile-content ">GOLD</div>
-            </div>
             <div class="tile tile-small-y" data-role="tile">
                 <div class="tile-content ">MASTERIES</div>
             </div>
@@ -146,7 +202,6 @@
                 <div class="tile-content ">RUNES</div>
             </div>
         </div>
-
 
         <div class='pseudotile'>
             <div class="tile tile-wide-y">
@@ -276,7 +331,6 @@
             </div>
         </div>
     </div>
-
 
 </body>
 

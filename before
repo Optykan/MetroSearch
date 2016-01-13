@@ -1,0 +1,36 @@
+
+            foreach($data['participants'] as $participant){
+                echo "<p class='team ";
+                if ($participant['teamId']==100)
+                    echo "red'>";
+                else
+                    echo "blue'>";
+
+                # XXX is playing YYY using ZZZ/AAA
+                echo strtoupper($participant['summonerName'])." is playing ".strtoupper($champname[$participant['championId']]['name'])." using ".strtoupper($spellname[$participant['spell1Id']]['name'])."/".strtoupper($spellname[$participant['spell2Id']]['name']);
+                echo " - ";
+
+                #set values to 0
+                for($k=0;$k<3;$k++){
+                    $masteries[$pId][$k]=0;
+                }
+
+                #get masteries
+                foreach($data['participants'][$pId]['masteries'] as $mtmp){
+                    #get the tree ID
+                    $mTree=floor(($mtmp['masteryId']-6000)/100);
+                    $masteries[$pId][$remap[$mTree]-1]+=$mtmp['rank'];
+
+                    #check for keystone
+                    $keyCheck=floor($mtmp['masteryId']-(6000+$mTree*100));
+                    if($keyCheck>60){
+                        #set keystone
+                        $keystones[$pId]=$mtmp['masteryId'];
+                    }
+                }
+                # XX/XX/XX (KEYSTONE)
+                echo $masteries[$pId][0]."/".$masteries[$pId][1]."/".$masteries[$pId][2]." (".$keystonename["$keystones[$pId]"].")";
+
+                #next player
+                $pId++;
+            }
