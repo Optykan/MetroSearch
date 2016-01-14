@@ -27,6 +27,9 @@ body {
 .tile-content .live-slide {
     display: block;
 }
+.tile-content .image-container .image-overlay {
+    padding: 0;
+}
 
 /* summoner splash */
 

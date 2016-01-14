@@ -1,17 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+}
 body {
-    font-family: 'Raleway', sans-serif;
-    background-color: #22313F;
-    color: #eee;
+    background-color: #1d1d1d;
+    color: white;
 }
 
-.team {
+/* OTHER STYLES */
+
+.settings {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: default;
+}
+.settings .icon {
     font-size: 2em;
+    opacity: 0.7;
+    -webkit-transition: opacity 0.5s ease;
+    -moz-transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease;
+}
+.settings .icon:hover {
+    opacity: 1;
+    -webkit-transition: opacity 0.5s ease;
+    -moz-transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease;
+}
+.dialog {
+    padding: 1em 2em 2em 2em;
 }
 
-.red {
-    color: #e74c3c;
+/* TILE STYLES */
+
+.red .pseudotile .tile:not(.ranked) {
+    background-color: #ee1111;
+}
+.blue .pseudotile .tile {
+    background-color: #2d89ef;
+}
+.tile-container {
+    width: 1790px;
+    margin: 0 auto;
+}
+.image-overlay, .tile-content {
+    font-family: 'Open Sans', serif;
+}
+.middle {
+    width: 1.2em;
+    margin: 0 auto;
+    padding: 10px 0 10px 0;
+}
+.tile-content .live-slide {
+    display: block;
+}
+.tile-content .image-container .image-overlay {
+    padding: 0;
 }
 
-.blue {
-    color: #3498db;
+/* summoner splash */
+
+.tile-wide-y {
+    width: 171px;
 }
+
+/* summoner spells */
+
+.tile-small, .spell {
+    width: 70px;
+    height: 70px;
+}
+
+/*runes, masteries, and rank*/
+
+.tile-small-y {
+    //width:150px;
+}
+.pseudotile {
+    display: block;
+    float: left;
+    width: 354px;
+    padding-left: 5px;
+    padding-right: 5px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.image-container .image-overlay::after, .image-container .image-overlay::before {
+    border: none;
+}
+.spell .image-overlay {
+    height: 100%;
+    padding: 0;
+    margin: 0 auto;
+    vertical-align: middle;
+}
+
+/* ranked */
+
+.ranked .image-container .frame {
+    background-color: rgba(0, 0, 0, 0);
+}
+.bronze {
+    background-image: url("../assets/background/bronze.jpg");
+}
+.silver {
+    background-image: url("../assets/background/silver.jpg");
+    background-size: 240px 150px;
+}
+.gold {
+    background-image: url("../assets/background/gold.jpg");
+    background-size: 150px 188px;
+}
+.platinum {
+    background-image: url("../assets/background/platinum.jpg");
+    background-size: 267px 150px;
+}
+.diamond {
+    background-image: url("../assets/background/diamond.jpg");
+    background-size: 150px 150px;
+}
+.master {}
+.challenger {}
+.ranked {}
