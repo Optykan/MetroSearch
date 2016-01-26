@@ -6,6 +6,27 @@ body {
     background-color: #1d1d1d;
     color: white;
 }
+.switch .check {
+    width: 42px;
+}
+.switch .check::before {
+    transition: transform .2s linear !important;
+    /* sorry! */
+    width: 11px;
+    height: 11px;
+    margin-top: 2px;
+    margin-left: 4px;
+}
+.input-control.modern * {
+    transition: all 0.3s linear, visibility 1ms !important;
+}
+.row .input-control {
+    margin-top: -15px;
+    margin-left: 10px;
+}
+.input-control .placeholder {
+    margin-top: 3px;
+}
 
 /* OTHER STYLES */
 
@@ -28,13 +49,10 @@ body {
     -moz-transition: opacity 0.5s ease;
     transition: opacity 0.5s ease;
 }
-.dialog {
-    padding: 1em 2em 2em 2em;
-}
 
 /* TILE STYLES */
 
-.red .pseudotile .tile:not(.ranked) {
+.red .pseudotile .tile {
     background-color: #ee1111;
 }
 .blue .pseudotile .tile {
@@ -97,31 +115,86 @@ body {
     margin: 0 auto;
     vertical-align: middle;
 }
+.ranked .image-container .image-overlay {
+    text-transform: uppercase;
+    font-size: 1em;
+}
 
 /* ranked */
 
 .ranked .image-container .frame {
     background-color: rgba(0, 0, 0, 0);
 }
-.bronze {
+.ranked .image-container .image-overlay .wins {
+    color: #2ecc71;
+}
+.ranked .image-container .image-overlay .losses {
+    color: #e74c3c;
+}
+
+/*bronze*/
+
+.bgbronze {
     background-image: url("../assets/background/bronze.jpg");
 }
-.silver {
+.row .pseudotile .bronze {
+    background-color: #d35400;
+}
+
+/*silver*/
+
+.bgsilver {
     background-image: url("../assets/background/silver.jpg");
     background-size: 240px 150px;
 }
-.gold {
+.row .pseudotile .silver {
+    background-color: #bdc3c7;
+}
+
+/*gold*/
+
+.bggold {
     background-image: url("../assets/background/gold.jpg");
     background-size: 150px 188px;
 }
-.platinum {
+.row .pseudotile .gold {
+    background-color: #f39c12;
+}
+
+/*platinum*/
+
+.bgplatinum {
     background-image: url("../assets/background/platinum.jpg");
     background-size: 267px 150px;
 }
-.diamond {
+.row .pseudotile .platinum {
+    background-color: #1abc9c;
+}
+
+/*diamod*/
+
+.bgdiamond {
     background-image: url("../assets/background/diamond.jpg");
     background-size: 150px 150px;
 }
-.master {}
-.challenger {}
-.ranked {}
+.row .pseudotile .diamond {
+    background-color: #3498db;
+}
+
+/*master*/
+
+.bgmaster {
+    background-color: #ecf0f1;
+}
+.row .pseudotile .master {
+    background-color: #ecf0f1;
+}
+
+/*challenger (woah!)*/
+
+.bgchallenger {
+    background-color: #f1c40f;
+}
+.row .pseudotile .challenger {
+    background-color: #f1c40f;
+}

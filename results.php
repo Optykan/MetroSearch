@@ -1,5 +1,7 @@
 <?php
   $key=getenv('apikey');
+  if(!$key)
+    $key = $_GET['apikey'];
   $id=$_GET['id'];
   $region="NA1";
   $summonerIdList=array();
@@ -9,7 +11,9 @@
   $masteries=array();
   $keystones=array();
   $remap=array(0,1,3,2);
+  $extrasEnabled=array("y", "y", "y", "rgba(155, 89, 182,0.8)", "rgba(155, 89, 182,0.8)");
   $time=0;
+
 
   $data = json_decode(file_get_contents("https://na.api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/$region/$id?api_key=$key"), true);
   //$data =json_decode(file_get_contents("json/testfile.json"), true);
@@ -32,7 +36,10 @@
   }
   $summonerIdList=explode(",",substr($summonerIdRequest, 0, -1));
 
-  $ranked=json_decode(file_get_contents("https://na.api.pvp.net/api/lol/na/v2.5/league/by-summoner/$summonerIdRequest/entry?api_key=$key"));
+  if (isset($_COOKIE['pref']))
+    $extrasEnabled=explode("/", $_COOKIE['pref']);
+
+  $ranked=json_decode(file_get_contents("https://na.api.pvp.net/api/lol/na/v2.5/league/by-summoner/$summonerIdRequest/entry?api_key=$key"), true);
   //$ranked=json_decode(file_get_contents("json/testranked.json"), true);
 ?>
     <html>
@@ -48,10 +55,6 @@
         <link href="css/options.css" rel="stylesheet">
         <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
 
-        <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.blue-pink.min.css">
-
-        <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
         <script src="js/metro.js"></script>
     </head>
@@ -75,38 +78,59 @@
         ?>
         </div>
 
-        <div data-role="dialog,draggable" id="options" data-close-button='true'>
-            <h1>Options</h1>
+        <div data-role="dialog" id="options" data-close-button='true'>
+            <h1 class='oheader'>Options</h1>
             <div class="row">
-                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect is-checked" id="dynSplash" for="dynSplashCheck">
-                    <input type="checkbox" id="dynSplashCheck" class="mdl-switch__input">
-                    <span class="mdl-switch__label"></span>
+                <label class="switch" id="dynSplash">
+                    <input class="prefSwitch" type="checkbox" id="dynSplashCheck">
+                    <span class="check"></span>
                 </label>
                 <p>
-                    Enable dynamic splashes
+                    Enable dynamic splashes (~1MB/unique champ)
                 </p>
             </div>
             <div class="row">
-                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect is-checked" id="rankBg" for="rankBgCheck">
-                    <input type="checkbox" id="rankBgCheck" class="mdl-switch__input">
-                    <span class="mdl-switch__label"></span>
+                <label class="switch" id="rankBg">
+                    <input class="prefSwitch" type="checkbox" id="rankBgCheck">
+                    <span class="check"></span>
                 </label>
                 <p>
-                    Enable ranked background images
+                    Enable ranked background images (~25KB/unique rank)
                 </p>
             </div>
             <div class="row">
-                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect is-checked" id="rankBorder" for="rankBorderCheck">
-                    <input type="checkbox" id="rankBorderCheck" class="mdl-switch__input">
-                    <span class="mdl-switch__label"></span>
+                <label class="switch" id="rankBorder">
+                    <input class="prefSwitch" type="checkbox" id="rankBorderCheck">
+                    <span class="check"></span>
                 </label>
                 <p>
-                    Enable ranked borders
+                    Enable ranked borders (~25KB/unique rank)
                 </p>
+            </div>
+            <hr></hr>
+
+            <div class='row' style="margin-top:20px;">
+                <p class='boxText' style="padding-left:0px;">
+                    Set custom ranked hover color:
+                </p>
+                <div class="input-control text" data-role="input">
+                    <input class='prefSwitch' id='splashBgHoverCol' type="text" placeholder="#HEX or RGB(A)" onkeyup="hoverCol(this)">
+                    <button class="button helper-button clear"><span class="mif-cross"></span></button>
+                </div>
+            </div>
+            <div class='row'>
+                <p class='boxText' style="padding-left:0px;">
+                    Set custom splash hover color :
+                </p>
+                <div class="input-control text" data-role="input">
+                  <input class='prefSwitch' id='rankBgHoverCol' type="text" placeholder="#HEX or RGB(A)"  onkeyup="hoverCol(this)">
+                  <button class="button helper-button clear"><span class="mif-cross"></span></button>
+              </div>
             </div>
 
+
         </div>
-        <div class="settings" onclick="(function(){$('#options').data('dialog').open();})()">
+        <div class="settings" onclick="showDialog('#options');">
             <i class="icon ion-android-options"></i>
         </div>
         <!--<script>
@@ -119,13 +143,31 @@
             </script>-->
         <!-- Remove the next JS to prevent angled clicking -->
         <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-
+        <script src="js/preferences.js"></script>
         <script src='js/time.js'></script>
         <script>
+            var open = false;
+            document.getElementsByClassName("dialog-close-button")[0].addEventListener('click', function() {
+                showDialog('#options');
+            }, false);
+
             function showDialog(id) {
-                var dialog = $(id).data('options');
-                dialog.open();
+                var dialog = $(id).data('dialog');
+                if (open) {
+                    savePref();
+                    open = false;
+                    dialog.close();
+                } else {
+                    loadPref();
+                    open = true;
+                    dialog.open();
+                }
             }
+            $(document).click(function(event) {
+                var target = $(event.target);
+                if (!target.is("#options *,#options,.settings,.icon") && open)
+                    showDialog('#options');
+            });
         </script>
     </body>
 

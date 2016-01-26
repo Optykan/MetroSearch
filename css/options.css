@@ -1,68 +1,39 @@
+p {
+    margin-bottom: 20px;
+}
+
 /* dialog box styling */
 
+.oheader {
+    margin-bottom: 1em;
+}
 #options .row * {
     display: inline-block;
 }
 #options .row label {
     width: auto;
 }
+#options .row {
+    margin-top: 10px;
+}
 .row:nth-child(2) {
     margin-top: 20px;
 }
-#options .row p {
-    height: inherit;
-    vertical-align: top;
-    padding-left: 1em;
+.dialog {
+    padding: 1em 4em 2em 4em;
 }
-.dialog {}
+hr + .row {
+    margin-top: 30px;
+}
 
-/* all toggle stylings */
+/* input styling */
 
-.onoffswitch {
-    position: relative;
-    width: 55px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
+.boxText {
+    padding-top: 2px;
 }
-.onoffswitch-checkbox {
-    display: none;
+.input-control {
+    vertical-align: baseline;
 }
-.onoffswitch-label {
-    display: block;
-    overflow: hidden;
-    cursor: pointer;
-    height: 20px;
-    padding: 0;
-    line-height: 20px;
-    border: 0px solid #FFFFFF;
-    border-radius: 30px;
-    background-color: #9E9E9E;
-}
-.onoffswitch-label:before {
-    content: "";
-    display: block;
-    width: 30px;
-    margin: -5px;
-    background: #FFFFFF;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 31px;
-    border-radius: 30px;
-    box-shadow: 0 6px 12px 0px #757575;
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label {
-    background-color: #42A5F5;
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
-    border-color: #42A5F5;
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-    margin-left: 0;
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label:before {
-    right: 0px;
-    background-color: #2196F3;
-    box-shadow: 3px 6px 18px 0px rgba(0, 0, 0, 0.2);
+.text .prefSwitch {
+    transition: border 0.3s ease;
 }

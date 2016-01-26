@@ -3,6 +3,9 @@
     defined('auth') or die("403 - forbidden");
     $key=getenv('apikey');
     if(!$key)
+        $key=$_GET['apikey'];
+
+    if (!$key)
         die ("500 - server missing");
 
     $name=$_GET['inputname'];
@@ -15,7 +18,7 @@
     $summID="https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/".$name."?api_key=".$key;
     $json = file_get_contents($summID);
     $data = json_decode($json, true);
-    $id = $data[$name]['id']; 
+    $id = $data[$name]['id'];
 
     if(strpos($http_response_header[0],'200') !== false){
         /*$url="https://na.api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/NA1/".$id."?api_key=".$key;
